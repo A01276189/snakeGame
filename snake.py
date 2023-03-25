@@ -13,12 +13,22 @@ editado por Rebecca Flores Mora
 
 from random import randrange
 from turtle import *
+import random
 
 from freegames import square, vector
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+
+# Cambio de colores
+colores = ["blue", "purple", "green", "yellow", "black"]
+color_snake = random.choice(colores)
+color_food = random.choice(colores)
+while color_snake == color_food:
+    color_food = random.choice(colores)
+    if color_snake != color_food:
+        break
 
 
 def change(x, y):
@@ -55,9 +65,9 @@ def move():
     clear()
 
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        square(body.x, body.y, 9, color_snake)
 
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, color_food)
     update()
     ontimer(move, 100)
 
